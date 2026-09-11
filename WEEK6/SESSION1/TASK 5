@@ -1,0 +1,36 @@
+class MyHashSet {
+
+    private boolean[] set;
+
+    public MyHashSet() {
+        set = new boolean[1000001];
+    }
+
+    public void add(int key) {
+        set[key] = true;
+    }
+
+    public void remove(int key) {
+        set[key] = false;
+    }
+
+    public boolean contains(int key) {
+        return set[key];
+    }
+}
+Example
+Input:
+add(1)
+add(2)
+contains(1)
+contains(3)
+add(2)
+contains(2)
+remove(2)
+contains(2)
+Output:
+true
+false
+true
+false
+
