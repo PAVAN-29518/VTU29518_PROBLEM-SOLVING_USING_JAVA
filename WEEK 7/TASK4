@@ -1,0 +1,40 @@
+import java.util.*;
+
+class BrowserHistory {
+
+    Stack<String> back = new Stack<>();
+    Stack<String> forward = new Stack<>();
+
+    public BrowserHistory(String homepage) {
+        back.push(homepage);
+    }
+
+    public void visit(String url) {
+        back.push(url);
+        forward.clear();
+    }
+
+    public String back(int steps) {
+        while (steps > 0 && back.size() > 1) {
+            forward.push(back.pop());
+            steps--;
+        }
+        return back.peek();
+    }
+
+    public String forward(int steps) {
+        while (steps > 0 && !forward.isEmpty()) {
+            back.push(forward.pop());
+            steps--;
+        }
+        return back.peek();
+    }
+}
+Input:
+["BrowserHistory", "visit", "visit", "back", "back", "forward", "visit", "forward"]
+
+[["leetcode.com"], ["google.com"], ["facebook.com"], [1], [1], [1], ["linkedin.com"], [2]]
+
+Output:
+[null, null, null, "google.com", "leetcode.com",
+ "google.com", null, "linkedin.com"]
